@@ -1,7 +1,15 @@
+from abc import abstractmethod
+
+
 class Employee():
   new_id = 1
   def __init__(self):
     self.id = Employee.new_id
+    # Protected member _id
+    self._id = None
+    # Private member __id
+    # this will cause name mangling
+    self.__id = None
     Employee.new_id += 1
 
   def say_id(self):
@@ -28,7 +36,7 @@ class Admin(Employee, User):
     super().say_id()
     print("I am an admin.")
 
-# a class inheritting members from its superclass and its super-superclass
+# Class Manager inheritting members from its superclass and its super-superclass
 class Manager(Admin):
   def say_id(self):
     print("I am in charge")
@@ -46,6 +54,17 @@ class Meeting:
   # Write your code
   def __len__(self):
     return len(self.attendees)
+  
+# Abstraction helps with the design of code by defining necessary behaviors to be -
+# implemented within a class structure. By doing so, abstraction also helps avoid -
+# leaving out or overlapping class functionality as class hierarchies get larger.
+# @abstractmethod
+# def say_id():
+
+# Encapsulation is the process of making methods and data hidden inside the object -
+# they relate to.
+# Use single underscore self._x to indicate that a member is protected
+# Declare a member as private with two leading underscores self.__x
   
 e1 = Employee()
 e2 = Employee()
